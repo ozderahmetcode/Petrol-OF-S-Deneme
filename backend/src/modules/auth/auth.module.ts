@@ -18,7 +18,6 @@ import { RolesGuard } from './roles.guard';
       inject: [ConfigService],
     }),
   ],
-  controllers: [AuthController],
   providers: [AuthService, RolesGuard],
   exports: [AuthService],
 })
