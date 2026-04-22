@@ -9,8 +9,9 @@ import { io } from 'socket.io-client';
 const isElectron = !!(window as any).electron;
 const hardware: IHardwareService = isElectron ? new ElectronAdapter() : new WebAdapter();
 
-// Socket Connection
-const socket = io('http://localhost:3000');
+// Socket & API Connection
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const socket = io(API_URL);
 
 interface BasketItem {
   name: string;
@@ -34,7 +35,7 @@ function App() {
     setLoginError('');
     
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
