@@ -1,0 +1,16 @@
+{
+  "name": "ozder-erp",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:electron": "electron electron/main.js",
+    "start": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start:desktop": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"wait-on http://localhost:5173 && npm run dev:electron\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^28.0.0",
+    "wait-on": "^7.2.0"
+  }
+}
