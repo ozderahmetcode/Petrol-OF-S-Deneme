@@ -12,12 +12,13 @@ import { RolesGuard } from './roles.guard';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        secret: configService.get<string>('JWT_SECRET') || 'ozder-erp-super-secret-key-default-2024',
         signOptions: { expiresIn: '8h' },
       }),
       inject: [ConfigService],
     }),
   ],
+  controllers: [AuthController],
   providers: [AuthService, RolesGuard],
   exports: [AuthService],
 })
